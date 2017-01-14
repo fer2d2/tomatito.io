@@ -10,18 +10,32 @@ import {Observable} from "rxjs";
 })
 export class TimerComponent implements OnInit {
   private _minutesToCount:number;
+  private _secondsToCount:number;
   private _remaining:string;
 
-  constructor(private _timerService:TimerService) {}
+  constructor(private _timerService:TimerService) {
+  }
 
   ngOnInit() {
-    this._timerService.startTimer(this._minutesToCount);
+    this._timerService.initialize(this._minutesToCount);
+    this._remaining = this._timerService.initialTime;
+  }
+
+  public startTimer() {
+    this._timerService.startTimer();
     this._timerService.remaining.subscribe(
       newTime => {
         this._remaining = newTime;
       }
     );
-    console.log(this._remaining);
+  }
+
+  private stopTimer() {
+    this._timerService.stopTimer();
+  }
+
+  private resetTimer() {
+    this._timerService.resetTimer();
   }
 
   @Input()
