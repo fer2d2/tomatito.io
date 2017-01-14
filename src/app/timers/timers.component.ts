@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
   // directives: ,
 })
 export class TimersComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit() {
