@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
+
+body {
+  margin: 0;
+  background-color: #F5F5F5;
+}
+
+.top-menu {
+  text-align: right;
+}
+
+.tomatito-card {
+  max-width: 740px;
+  margin: 0 auto;
+}
+
+.timer {
+  font-size: 12rem;
+  text-align: center;
+}
+
+.space-filler {
+  flex: 1 1 auto;
+}
+
+.center {
+  margin: 0 auto;
+  text-align: center;
+}

@@ -1,3 +1,20 @@
-<h1>
-  {{title}}
-</h1>
+<header>
+  <md-toolbar color="primary">
+    <span>Tomatito</span>
+
+    <md-toolbar-row>
+      <!--<span>Third Line</span>-->
+      <span class="space-filler"></span>
+      <nav>
+        <a md-button routerLink="/timers" routerLinkActive="active">Timers</a>
+        <a md-button routerLink="/history">History</a>
+        <a md-button routerLink="/asdffdas">About pomodoro</a>
+      </nav>
+    </md-toolbar-row>
+
+  </md-toolbar>
+</header>
+
+<div class="app-content">
+  <router-outlet></router-outlet>
+</div>
