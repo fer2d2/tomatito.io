@@ -1,16 +1,30 @@
 <header>
   <md-toolbar color="primary">
     <span>Tomatito</span>
-    <div> {{ (angularFire.auth | async)?.providerData.displayName }} </div>
-    <button (click)="login()">Login</button>
-    <button (click)="logout()">Logout</button>
+
+    <span class="space-filler"></span>
+
+    <span class="user-data">{{ authService.user?.email }}</span>
+    <button md-icon-button [mdMenuTriggerFor]="menu">
+      <md-icon>more_vert</md-icon>
+    </button>
+    <md-menu #menu="mdMenu">
+      <button (click)="login()" md-menu-item>
+        <md-icon>person</md-icon>
+        <span>Login with Google</span>
+      </button>
+      <button (click)="logout()" md-menu-item>
+        <md-icon>clear</md-icon>
+        <span>Logout</span>
+      </button>
+    </md-menu>
 
     <md-toolbar-row>
       <span class="space-filler"></span>
       <nav>
         <a md-button routerLink="/timers" routerLinkActive="active">Timers</a>
         <a md-button routerLink="/history">History</a>
-        <a md-button routerLink="/asdffdas">About pomodoro</a>
+        <a md-button routerLink="/about">About pomodoro</a>
       </nav>
     </md-toolbar-row>
 

@@ -9,6 +9,6 @@ export const FIREBASE_CONFIG = {
 };
 
 export const FIREBASE_AUTH_CONFIG = {
-  provider: AuthProviders.Google,
+  // provider: AuthProviders.Google,
   method: AuthMethods.Redirect
 };
