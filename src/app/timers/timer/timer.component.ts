@@ -9,11 +9,13 @@ import {TimerService} from "./timer.service";
   providers: [TimerService]
 })
 export class TimerComponent implements OnInit {
-  private _minutesToCount:number;
-  private _remaining:string;
-  private _remainingPercentage:number;
+  private SNACKBAR_DURATION = 5000;
 
-  constructor(private _timerService:TimerService, public snackBar: MdSnackBar) {
+  private _minutesToCount: number;
+  private _remaining: string;
+  private _remainingPercentage: number;
+
+  constructor(private _timerService: TimerService, public snackBar: MdSnackBar) {
   }
 
   ngOnInit() {
@@ -31,29 +33,32 @@ export class TimerComponent implements OnInit {
     this._timerService.remainingPercentage.subscribe(
       newPercentage => {
         this._remainingPercentage = newPercentage;
+        if (this._remainingPercentage === 100) {
+          this.snackBar.open('Pomodoro finished!', 'OK');
+        }
       }
     );
     let snackBarRef = this.snackBar.open('New pomodoro started', 'OK', {
-      duration: 5000,
+      duration: this.SNACKBAR_DURATION,
     });
   }
 
   public stopTimer() {
     this._timerService.stopTimer();
-    let snackBarRef = this.snackBar.open('Pomodoro stopped', 'OK', {
-      duration: 5000,
+    this.snackBar.open('Pomodoro stopped', 'OK', {
+      duration: this.SNACKBAR_DURATION,
     });
   }
 
   public resetTimer() {
     this._timerService.resetTimer();
-    let snackBarRef = this.snackBar.open('Pomodoro cancelled', 'OK', {
-      duration: 5000,
+    this.snackBar.open('Pomodoro cancelled', 'OK', {
+      duration: this.SNACKBAR_DURATION,
     });
   }
 
   @Input()
-  set minutesToCount(minutesToCount:number) {
+  set minutesToCount(minutesToCount: number) {
     this._minutesToCount = minutesToCount;
   }
 }

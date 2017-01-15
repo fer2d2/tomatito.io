@@ -81,7 +81,7 @@ export class TimerService {
   }
 
   get initialTime() {
-    return this._minutesToCount + ":00";
+    return (this._minutesToCount < 10 ? "0" + this._minutesToCount : this._minutesToCount) + ":00";
   }
 
   get remaining() {
