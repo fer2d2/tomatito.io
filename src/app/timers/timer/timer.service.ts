@@ -1,42 +1,45 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 
 @Injectable()
 export class TimerService {
-  private _remainingStr:BehaviorSubject<string>;
-  private _minutesToCount:number;
-  private _secondsRemaining:number;
-  private _intervalId:any;
-  private _intervalPaused:boolean;
+  private _remainingStr: BehaviorSubject<string>;
+  private _remainingPercentage: BehaviorSubject<number>;
+  private _minutesToCount: number;
+  private _secondsRemaining: number;
+  private _intervalId: any;
+  private _intervalPaused: boolean;
 
   constructor() {
     this._remainingStr = new BehaviorSubject<string>("");
+    this._remainingPercentage = new BehaviorSubject<number>(0);
     this._intervalPaused = false;
   }
 
-  public initialize(minutesToCount:number) {
+  public initialize(minutesToCount: number) {
     this._minutesToCount = minutesToCount;
     this._secondsRemaining = minutesToCount * 60;
   }
 
   public startTimer() {
-    if(this._intervalPaused) {
+    if (this._intervalPaused) {
       this._intervalPaused = false;
     }
 
-    if(!this._intervalId) {
+    if (!this._intervalId) {
       this.createTimer();
     }
   }
 
   private createTimer() {
     this._remainingStr.next(this.initialTime);
+    this._remainingPercentage.next(0);
 
-    let minutes:number;
-    let seconds:number;
+    let minutes: number;
+    let seconds: number;
 
     this._intervalId = setInterval(() => {
-      if(this._intervalPaused) {
+      if (this._intervalPaused) {
         return;
       }
 
@@ -45,6 +48,7 @@ export class TimerService {
 
       let remainingTimeStr = this.calculateRemainingTimeStr(minutes, seconds);
       this._remainingStr.next(remainingTimeStr);
+      this._remainingPercentage.next(this.calculateRemainingPercentage());
 
       if (--this._secondsRemaining < 0) {
         this.resetTimer();
@@ -58,6 +62,10 @@ export class TimerService {
     return minutesStr + ":" + secondsStr;
   }
 
+  private calculateRemainingPercentage(): number {
+    return 100 - (this._secondsRemaining * 100 / (this._minutesToCount * 60));
+  }
+
   public resetTimer() {
     this._secondsRemaining = this._minutesToCount * 60;
 
@@ -65,6 +73,7 @@ export class TimerService {
     this._intervalId = undefined;
 
     this._remainingStr.next(this.initialTime);
+    this._remainingPercentage.next(0);
   }
 
   public stopTimer() {
@@ -72,10 +81,14 @@ export class TimerService {
   }
 
   get initialTime() {
-    return this._minutesToCount+":00"
+    return this._minutesToCount + ":00";
   }
 
   get remaining() {
     return this._remainingStr.asObservable();
+  }
+
+  get remainingPercentage() {
+    return this._remainingPercentage.asObservable();
   }
 }

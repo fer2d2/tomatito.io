@@ -1,7 +1,7 @@
 <md-card class="tomatito-card">
   <md-card-content>
     <div class="timer">
-      {{ this._remaining }}
+      {{ _remaining }}
     </div>
   </md-card-content>
   <md-card-actions class="center">
@@ -9,4 +9,7 @@
     <button md-button (click)="stopTimer()">Stop</button>
     <button md-button (click)="resetTimer()">Reset</button>
   </md-card-actions>
+  <md-card-footer>
+    <md-progress-bar mode="determinate" [value]="_remainingPercentage"></md-progress-bar>
+  </md-card-footer>
 </md-card>

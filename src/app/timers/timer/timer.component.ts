@@ -1,6 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
+import {MdSnackBar} from '@angular/material';
 import {TimerService} from "./timer.service";
-import {Observable} from "rxjs";
 
 @Component({
   selector: 'tomatito-timer',
@@ -10,10 +10,10 @@ import {Observable} from "rxjs";
 })
 export class TimerComponent implements OnInit {
   private _minutesToCount:number;
-  private _secondsToCount:number;
   private _remaining:string;
+  private _remainingPercentage:number;
 
-  constructor(private _timerService:TimerService) {
+  constructor(private _timerService:TimerService, public snackBar: MdSnackBar) {
   }
 
   ngOnInit() {
@@ -28,14 +28,28 @@ export class TimerComponent implements OnInit {
         this._remaining = newTime;
       }
     );
+    this._timerService.remainingPercentage.subscribe(
+      newPercentage => {
+        this._remainingPercentage = newPercentage;
+      }
+    );
+    let snackBarRef = this.snackBar.open('New pomodoro started', 'OK', {
+      duration: 5000,
+    });
   }
 
-  private stopTimer() {
+  public stopTimer() {
     this._timerService.stopTimer();
+    let snackBarRef = this.snackBar.open('Pomodoro stopped', 'OK', {
+      duration: 5000,
+    });
   }
 
-  private resetTimer() {
+  public resetTimer() {
     this._timerService.resetTimer();
+    let snackBarRef = this.snackBar.open('Pomodoro cancelled', 'OK', {
+      duration: 5000,
+    });
   }
 
   @Input()
