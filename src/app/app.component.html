@@ -1,6 +1,9 @@
 <header>
   <md-toolbar color="primary">
     <span>Tomatito</span>
+    <div> {{ (angularFire.auth | async)?.providerData.displayName }} </div>
+    <button (click)="login()">Login</button>
+    <button (click)="logout()">Logout</button>
 
     <md-toolbar-row>
       <span class="space-filler"></span>
