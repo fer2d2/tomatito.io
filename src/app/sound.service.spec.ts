@@ -1,15 +1,15 @@
 /* tslint:disable:no-unused-variable */
 import {TestBed, inject} from "@angular/core/testing";
-import {TimerService} from "./timer.service";
+import {SoundService} from "./sound.service";
 
-describe('TimerService', () => {
+describe('SoundService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [TimerService]
+      providers: [SoundService]
     });
   });
 
-  it('should ...', inject([TimerService], (service: TimerService) => {
+  it('should ...', inject([SoundService], (service: SoundService) => {
     expect(service).toBeTruthy();
   }));
 });

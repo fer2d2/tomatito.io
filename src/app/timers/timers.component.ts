@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {TimerComponent} from './timer/timer.component';
+import {Component, OnInit} from "@angular/core";
 
 @Component({
   selector: 'app-timers',
@@ -8,7 +7,8 @@ import {TimerComponent} from './timer/timer.component';
 })
 export class TimersComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

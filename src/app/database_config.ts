@@ -1,4 +1,4 @@
-import {AuthProviders, AuthMethods} from "angularfire2";
+import {AuthMethods} from "angularfire2";
 
 export const FIREBASE_CONFIG = {
   apiKey: 'AIzaSyClxOwZ73f13fH6OIWD7MM9vpWWoeaBV5A',

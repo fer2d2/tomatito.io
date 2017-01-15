@@ -1,12 +1,13 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {MdSnackBar} from '@angular/material';
+import {Component, OnInit, Input} from "@angular/core";
+import {MdSnackBar} from "@angular/material";
 import {TimerService} from "./timer.service";
+import {SoundService} from "../../sound.service";
 
 @Component({
   selector: 'tomatito-timer',
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.css'],
-  providers: [TimerService]
+  providers: [TimerService, SoundService]
 })
 export class TimerComponent implements OnInit {
   private SNACKBAR_DURATION = 5000;
@@ -15,7 +16,7 @@ export class TimerComponent implements OnInit {
   private _remaining: string;
   private _remainingPercentage: number;
 
-  constructor(private _timerService: TimerService, public snackBar: MdSnackBar) {
+  constructor(private _timerService: TimerService, public snackBar: MdSnackBar, private _soundService: SoundService) {
   }
 
   ngOnInit() {
@@ -35,6 +36,7 @@ export class TimerComponent implements OnInit {
         this._remainingPercentage = newPercentage;
         if (this._remainingPercentage === 100) {
           this.snackBar.open('Pomodoro finished!', 'OK');
+          this._soundService.beep();
         }
       }
     );

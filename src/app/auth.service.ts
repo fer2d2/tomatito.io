@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable} from "@angular/core";
 import {AngularFire, AuthProviders} from "angularfire2";
 
 export const AUTH_METHODS = {
