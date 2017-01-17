@@ -1,4 +1,6 @@
 import {Component, OnInit} from "@angular/core";
+import {CLOCK_TYPES} from "../entities/clock-types";
+
 
 @Component({
   selector: 'app-timers',
@@ -6,8 +8,10 @@ import {Component, OnInit} from "@angular/core";
   styleUrls: ['./timers.component.css'],
 })
 export class TimersComponent implements OnInit {
+  private _clockTypes;
 
   constructor() {
+    this._clockTypes = CLOCK_TYPES;
   }
 
   ngOnInit() {

@@ -11,10 +11,13 @@ export const AUTH_METHODS = {
 
 @Injectable()
 export class AuthService {
-  isAuth = false;
-  user = {};
+  isAuth:boolean;
+  user:any;
 
   constructor(public angularFire: AngularFire) {
+    this.isAuth = false;
+    this.user = {};
+
     this.angularFire.auth.subscribe(
       user => this._changeState(user),
       error => console.trace(error)
@@ -48,6 +51,7 @@ export class AuthService {
     }
     let data = user.auth.providerData[0];
     return {
+      id: data.uid,
       name: data.displayName,
       avatar: data.photoURL,
       email: data.email,
