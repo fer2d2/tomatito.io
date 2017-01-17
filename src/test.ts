@@ -12,7 +12,7 @@ import {BrowserDynamicTestingModule, platformBrowserDynamicTesting} from "@angul
 declare var __karma__: any;
 declare var require: any;
 
-// Prevent Karma from running prematurely.
+// Prevent Karma from isRunning prematurely.
 __karma__.loaded = function () {
 };
 

@@ -1,5 +1,7 @@
 import {Injectable} from "@angular/core";
 import {BehaviorSubject} from "rxjs";
+import {isNullOrUndefined} from "util";
+import {exists} from "fs";
 
 @Injectable()
 export class TimerService {
@@ -21,17 +23,19 @@ export class TimerService {
     this._secondsRemaining = minutesToCount * 60;
   }
 
-  public startTimer() {
+  public resume() {
     if (this._intervalPaused) {
       this._intervalPaused = false;
     }
+  }
 
+  public start() {
     if (!this._intervalId) {
-      this.createTimer();
+      this.newTimer();
     }
   }
 
-  private createTimer() {
+  private newTimer() {
     this._remainingStr.next(this.initialTime);
     this._remainingPercentage.next(0);
 
@@ -51,7 +55,7 @@ export class TimerService {
       this._remainingPercentage.next(this.calculateRemainingPercentage());
 
       if (--this._secondsRemaining < 0) {
-        this.resetTimer();
+        this.reset();
       }
     }, 1000);
   }
@@ -66,17 +70,18 @@ export class TimerService {
     return 100 - (this._secondsRemaining * 100 / (this._minutesToCount * 60));
   }
 
-  public resetTimer() {
+  public reset() {
     this._secondsRemaining = this._minutesToCount * 60;
 
     clearInterval(this._intervalId);
     this._intervalId = undefined;
+    this._intervalPaused = false;
 
     this._remainingStr.next(this.initialTime);
     this._remainingPercentage.next(0);
   }
 
-  public stopTimer() {
+  public stop() {
     this._intervalPaused = true;
   }
 
@@ -90,5 +95,9 @@ export class TimerService {
 
   get remainingPercentage() {
     return this._remainingPercentage.asObservable();
+  }
+
+  public isPaused():boolean {
+    return this._intervalPaused;
   }
 }

@@ -7,6 +7,7 @@ import {PomodoroRepositoryService} from "../../repositories/pomodoro-repository.
 import {AngularFire} from "angularfire2";
 import {AuthService} from "../../auth.service";
 import {CLOCK_TYPES} from "../../entities/clock-types";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'tomatito-timer',
@@ -19,7 +20,9 @@ export class TimerComponent implements OnInit {
 
   private _minutesLength: number;
   private _remainingTimeFormatted: string;
+  private _remainingTimeFormattedSubscription: Subscription;
   private _remainingPercentage: number;
+  private _remainingPercentageSubscription: Subscription;
 
   private _pomodoro: Pomodoro;
 
@@ -35,10 +38,18 @@ export class TimerComponent implements OnInit {
   }
 
   public startTimer() {
+    if(this._timerService.isPaused()) {
+      this._timerService.resume();
+      this.snackBar.open('Pomodoro resumed', 'OK', {
+        duration: this.SNACKBAR_DURATION,
+      });
+      return;
+    }
+
     this._pomodoro = new Pomodoro(CLOCK_TYPES[this._minutesLength]);
     this._pomodoro.addStartDateForNow();
 
-    this._timerService.startTimer();
+    this._timerService.start();
     this.subscribeTimerVariables();
 
     this.snackBar.open('New pomodoro started', 'OK', {
@@ -47,16 +58,39 @@ export class TimerComponent implements OnInit {
   }
 
   private subscribeTimerVariables() {
-    this._timerService.remaining.subscribe(
+    this.cleanSubscriptions();
+    this.subscribeRemainingTimeFormatted();
+    this.subscribeRemainingPercentage();
+  }
+
+  private cleanSubscriptions() {
+    if (this._remainingTimeFormattedSubscription) {
+      this._remainingTimeFormattedSubscription.unsubscribe();
+    }
+    if (this._remainingPercentageSubscription) {
+      this._remainingPercentageSubscription.unsubscribe();
+    }
+  }
+
+  private subscribeRemainingTimeFormatted() {
+    this._remainingTimeFormattedSubscription = this._timerService.remaining.subscribe(
       newTime => {
         this._remainingTimeFormatted = newTime;
+
+        if (this.timeFinished()) {
+          this._remainingTimeFormattedSubscription.unsubscribe();
+        }
       }
     );
+  }
 
-    this._timerService.remainingPercentage.subscribe(
+  private subscribeRemainingPercentage() {
+    this._remainingPercentageSubscription = this._timerService.remainingPercentage.subscribe(
       newPercentage => {
         this._remainingPercentage = newPercentage;
         if (this.timeFinished()) {
+          this._remainingPercentageSubscription.unsubscribe();
+
           this.snackBar.open('Pomodoro finished!', 'OK');
           this._soundService.beep();
 
@@ -72,14 +106,14 @@ export class TimerComponent implements OnInit {
   }
 
   public stopTimer() {
-    this._timerService.stopTimer();
+    this._timerService.stop();
     this.snackBar.open('Pomodoro stopped', 'OK', {
       duration: this.SNACKBAR_DURATION,
     });
   }
 
   public resetTimer() {
-    this._timerService.resetTimer();
+    this._timerService.reset();
     this.snackBar.open('Pomodoro cancelled', 'OK', {
       duration: this.SNACKBAR_DURATION,
     });
@@ -90,3 +124,4 @@ export class TimerComponent implements OnInit {
     this._minutesLength = minutesLength;
   }
 }
+
