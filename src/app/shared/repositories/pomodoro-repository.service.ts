@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {AngularFire} from "angularfire2";
 import {Pomodoro} from "../entities/pomodoro";
-import {AuthService} from "../auth.service";
+import {AuthService} from "../services/auth.service";
 
 @Injectable()
 export class PomodoroRepositoryService {

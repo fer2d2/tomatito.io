@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {CLOCK_TYPES} from "../entities/clock-types";
+import {CLOCK_TYPES} from "../shared/entities/clock-types";
 
 
 @Component({

@@ -1,0 +1,10 @@
+<button md-icon-button [mdMenuTriggerFor]="lang_menu">
+  <md-icon>public</md-icon>
+</button>
+<md-menu #lang_menu="mdMenu">
+  <button md-menu-item *ngFor="let language of _languages"
+          (click)="changeLanguage(language.key)"
+          [disabled]="isSelected(language.key)">
+    <span>{{ 'LANGUAGES.'+language.translationLabel | translate }}</span>
+  </button>
+</md-menu>

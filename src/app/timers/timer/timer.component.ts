@@ -1,12 +1,12 @@
 import {Component, OnInit, Input} from "@angular/core";
-import {MdSnackBar, PortalModule} from "@angular/material";
+import {MdSnackBar} from "@angular/material";
 import {TimerService} from "./timer.service";
-import {SoundService} from "../../sound.service";
-import {Pomodoro} from "../../entities/pomodoro";
-import {PomodoroRepositoryService} from "../../repositories/pomodoro-repository.service";
+import {SoundService} from "../../shared/services/sound.service";
+import {Pomodoro} from "../../shared/entities/pomodoro";
+import {PomodoroRepositoryService} from "../../shared/repositories/pomodoro-repository.service";
 import {AngularFire} from "angularfire2";
-import {AuthService} from "../../auth.service";
-import {CLOCK_TYPES} from "../../entities/clock-types";
+import {AuthService} from "../../shared/services/auth.service";
+import {CLOCK_TYPES} from "../../shared/entities/clock-types";
 import {Subscription} from "rxjs";
 
 @Component({

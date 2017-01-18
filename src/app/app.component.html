@@ -4,27 +4,29 @@
 
     <span class="space-filler"></span>
 
+    <tomatito-language-picker></tomatito-language-picker>
+
     <span class="user-data">{{ authService.user?.email }}</span>
-    <button md-icon-button [mdMenuTriggerFor]="menu">
+    <button md-icon-button [mdMenuTriggerFor]="login_menu">
       <md-icon>more_vert</md-icon>
     </button>
-    <md-menu #menu="mdMenu">
+    <md-menu #login_menu="mdMenu">
       <button (click)="login()" md-menu-item>
         <md-icon>person</md-icon>
-        <span>Login with Google</span>
+        <span>{{ 'AUTH.LOGIN_GOOGLE' | translate }}</span>
       </button>
       <button (click)="logout()" md-menu-item>
         <md-icon>clear</md-icon>
-        <span>Logout</span>
+        <span>{{ 'AUTH.LOGOUT' | translate }}</span>
       </button>
     </md-menu>
 
     <md-toolbar-row>
       <span class="space-filler"></span>
       <nav>
-        <a md-button routerLink="/timers" routerLinkActive="active">Timers</a>
-        <a md-button routerLink="/history">History</a>
-        <a md-button routerLink="/about">About pomodoro</a>
+        <a md-button routerLink="/timers" routerLinkActive="active">{{ 'NAVBAR.TIMERS' | translate }}</a>
+        <a md-button routerLink="/history">{{ 'NAVBAR.HISTORY' | translate }}</a>
+        <a md-button routerLink="/about">{{ 'NAVBAR.ABOUT' | translate }}</a>
       </nav>
     </md-toolbar-row>
 

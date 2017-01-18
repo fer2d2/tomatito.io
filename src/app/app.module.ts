@@ -13,6 +13,8 @@ import {APP_ROUTES} from "./routes";
 import {TimerComponent} from "./timers/timer/timer.component";
 import {AngularFireModule} from "angularfire2";
 import {FIREBASE_CONFIG, FIREBASE_AUTH_CONFIG} from "./database_config";
+import {TranslateModule} from "ng2-translate";
+import { LanguagePickerComponent } from './language-picker/language-picker.component';
 
 
 @NgModule({
@@ -21,7 +23,8 @@ import {FIREBASE_CONFIG, FIREBASE_AUTH_CONFIG} from "./database_config";
     TimersComponent,
     HistoryComponent,
     PageNotFoundComponent,
-    TimerComponent
+    TimerComponent,
+    LanguagePickerComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +33,7 @@ import {FIREBASE_CONFIG, FIREBASE_AUTH_CONFIG} from "./database_config";
     RouterModule.forRoot(APP_ROUTES),
     AngularFireModule.initializeApp(FIREBASE_CONFIG, FIREBASE_AUTH_CONFIG),
     MaterialModule.forRoot(),
+    TranslateModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

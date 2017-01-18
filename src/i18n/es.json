@@ -1,0 +1,25 @@
+{
+  "AUTH": {
+    "LOGIN_GOOGLE": "Iniciar sesión con Google",
+    "LOGOUT": "Cerrar sesión"
+  },
+  "NAVBAR": {
+    "TIMERS": "Cronómetros",
+    "HISTORY": "Historial",
+    "ABOUT": "¿Qué es pomodoro?"
+  },
+  "TIMER_TYPES": {
+    "POMODORO": "Pomodoro",
+    "MINI_BREAK": "Descanso corto",
+    "LONG_BREAK": "Descanso largo"
+  },
+  "TIMER_ACTIONS": {
+    "START": "Iniciar",
+    "STOP": "Parar",
+    "RESET": "Reiniciar"
+  },
+  "LANGUAGES": {
+    "SPANISH": "Español",
+    "ENGLISH": "Inglés"
+  }
+}

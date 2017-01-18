@@ -1,0 +1,25 @@
+{
+  "AUTH": {
+    "LOGIN_GOOGLE": "Login with Google",
+    "LOGOUT": "Logout"
+  },
+  "NAVBAR": {
+    "TIMERS": "Timers",
+    "HISTORY": "History",
+    "ABOUT": "About pomodoro"
+  },
+  "TIMER_TYPES": {
+    "POMODORO": "Pomodoro",
+    "MINI_BREAK": "Mini break",
+    "LONG_BREAK": "Long break"
+  },
+  "TIMER_ACTIONS": {
+    "START": "Start",
+    "STOP": "Stop",
+    "RESET": "Reset"
+  },
+  "LANGUAGES": {
+    "SPANISH": "Spanish",
+    "ENGLISH": "English"
+  }
+}

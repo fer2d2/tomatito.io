@@ -5,9 +5,9 @@
     </div>
   </md-card-content>
   <md-card-actions class="center">
-    <button md-button class="center" (click)="startTimer()">Start</button>
-    <button md-button (click)="stopTimer()">Stop</button>
-    <button md-button (click)="resetTimer()">Reset</button>
+    <button md-button class="center" (click)="startTimer()">{{ 'TIMER_ACTIONS.START' | translate }}</button>
+    <button md-button (click)="stopTimer()">{{ 'TIMER_ACTIONS.STOP' | translate }}</button>
+    <button md-button (click)="resetTimer()">{{ 'TIMER_ACTIONS.RESET' | translate }}</button>
   </md-card-actions>
   <md-card-footer>
     <md-progress-bar mode="determinate" [value]="_remainingPercentage"></md-progress-bar>
