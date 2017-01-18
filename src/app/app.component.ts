@@ -6,7 +6,7 @@ import {TranslateService} from "./shared/services/translate.service";
 @Component({
   selector: 'tomatito-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['app.component.scss'],
   providers: [AuthService, AngularFire, TranslateService]
 })
 export class AppComponent {

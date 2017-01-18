@@ -12,7 +12,7 @@ import {Subscription} from "rxjs";
 @Component({
   selector: 'tomatito-timer',
   templateUrl: './timer.component.html',
-  styleUrls: ['./timer.component.css'],
+  styleUrls: ['timer.component.scss'],
   providers: [TimerService, SoundService, PomodoroRepositoryService, AngularFire, AuthService]
 })
 export class TimerComponent implements OnInit {

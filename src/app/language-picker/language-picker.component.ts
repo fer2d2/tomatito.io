@@ -5,7 +5,7 @@ import {LANGUAGES} from "./languages";
 @Component({
   selector: 'tomatito-language-picker',
   templateUrl: './language-picker.component.html',
-  styleUrls: ['./language-picker.component.css']
+  styleUrls: ['language-picker.component.scss']
 })
 export class LanguagePickerComponent implements OnInit {
 

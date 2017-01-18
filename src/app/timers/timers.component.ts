@@ -5,7 +5,7 @@ import {CLOCK_TYPES} from "../shared/entities/clock-types";
 @Component({
   selector: 'app-timers',
   templateUrl: './timers.component.html',
-  styleUrls: ['./timers.component.css'],
+  styleUrls: ['timers.component.scss'],
 })
 export class TimersComponent implements OnInit {
   private _clockTypes;
