@@ -1,7 +1,5 @@
 import {Injectable} from "@angular/core";
-import {BehaviorSubject} from "rxjs";
-import {isNullOrUndefined} from "util";
-import {exists} from "fs";
+import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable()
 export class TimerService {
@@ -18,24 +16,24 @@ export class TimerService {
     this._intervalPaused = false;
   }
 
-  public initialize(minutesToCount: number) {
+  public initialize(minutesToCount: number): void {
     this._minutesToCount = minutesToCount;
     this._secondsRemaining = minutesToCount * 60;
   }
 
-  public resume() {
+  public resume(): void {
     if (this._intervalPaused) {
       this._intervalPaused = false;
     }
   }
 
-  public start() {
+  public start(): void {
     if (!this._intervalId) {
       this.newTimer();
     }
   }
 
-  private newTimer() {
+  private newTimer(): void {
     this._remainingStr.next(this.initialTime);
     this._remainingPercentage.next(0);
 
@@ -60,7 +58,7 @@ export class TimerService {
     }, 1000);
   }
 
-  private calculateRemainingTimeStr(minutes: number, seconds: number) {
+  private calculateRemainingTimeStr(minutes: number, seconds: number): string {
     let minutesStr = minutes < 10 ? "0" + minutes : minutes;
     let secondsStr = seconds < 10 ? "0" + seconds : seconds;
     return minutesStr + ":" + secondsStr;
@@ -70,7 +68,7 @@ export class TimerService {
     return 100 - (this._secondsRemaining * 100 / (this._minutesToCount * 60));
   }
 
-  public reset() {
+  public reset(): void {
     this._secondsRemaining = this._minutesToCount * 60;
 
     clearInterval(this._intervalId);
@@ -81,23 +79,23 @@ export class TimerService {
     this._remainingPercentage.next(0);
   }
 
-  public stop() {
+  public stop(): void {
     this._intervalPaused = true;
   }
 
-  get initialTime() {
-    return (this._minutesToCount < 10 ? "0" + this._minutesToCount : this._minutesToCount) + ":00";
+  get initialTime(): string {
+    return this.calculateRemainingTimeStr(this._minutesToCount, 0);
   }
 
-  get remaining() {
+  get remaining(): Observable<string> {
     return this._remainingStr.asObservable();
   }
 
-  get remainingPercentage() {
+  get remainingPercentage(): Observable<number> {
     return this._remainingPercentage.asObservable();
   }
 
-  public isPaused():boolean {
+  public isPaused(): boolean {
     return this._intervalPaused;
   }
 }
