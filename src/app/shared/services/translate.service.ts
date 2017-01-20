@@ -1,6 +1,5 @@
 import {Injectable} from "@angular/core";
 import * as Ng2Translate from "ng2-translate";
-import {Observable} from "rxjs";
 
 const DEFAULT_LANGUAGE = "en";
 

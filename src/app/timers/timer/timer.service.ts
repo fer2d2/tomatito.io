@@ -5,8 +5,10 @@ import {BehaviorSubject, Observable} from "rxjs";
 export class TimerService {
   private _remainingStr: BehaviorSubject<string>;
   private _remainingPercentage: BehaviorSubject<number>;
+
   private _minutesToCount: number;
   private _secondsRemaining: number;
+
   private _intervalId: any;
   private _intervalPaused: boolean;
 
@@ -28,7 +30,7 @@ export class TimerService {
   }
 
   public start(): void {
-    if (!this._intervalId) {
+    if (!this.started()) {
       this.newTimer();
     }
   }
@@ -80,7 +82,13 @@ export class TimerService {
   }
 
   public stop(): void {
-    this._intervalPaused = true;
+    if(this.started()) {
+      this._intervalPaused = true;
+    }
+  }
+
+  private started(): boolean {
+    return this._intervalId;
   }
 
   get initialTime(): string {
