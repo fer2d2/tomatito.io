@@ -8,6 +8,7 @@ import {AngularFire} from "angularfire2";
 import {AuthService} from "../../shared/services/auth.service";
 import {CLOCK_TYPES} from "../../shared/entities/clock-types";
 import {Subscription} from "rxjs";
+import {TranslateService} from "../../shared/services/translate.service";
 
 @Component({
   selector: 'tomatito-timer',
@@ -29,7 +30,8 @@ export class TimerComponent implements OnInit {
   constructor(private _timerService: TimerService,
               public snackBar: MdSnackBar,
               private _soundService: SoundService,
-              private _pomodoroRepository:PomodoroRepositoryService
+              private _pomodoroRepository: PomodoroRepositoryService,
+              private _translateService: TranslateService
   ) {}
 
   ngOnInit() {
@@ -40,9 +42,10 @@ export class TimerComponent implements OnInit {
   public startTimer() {
     if(this._timerService.isPaused()) {
       this._timerService.resume();
-      this.snackBar.open('Pomodoro resumed', 'OK', {
+      this.snackBar.open(this._translateService.instant('SNACK_BARS.TIMER.RESUMED'), 'OK', {
         duration: this.SNACKBAR_DURATION,
       });
+
       return;
     }
 
@@ -52,7 +55,7 @@ export class TimerComponent implements OnInit {
     this._timerService.start();
     this.subscribeTimerVariables();
 
-    this.snackBar.open('New pomodoro started', 'OK', {
+    this.snackBar.open(this._translateService.instant('SNACK_BARS.TIMER.STARTED'), 'OK', {
       duration: this.SNACKBAR_DURATION,
     });
   }
@@ -91,7 +94,7 @@ export class TimerComponent implements OnInit {
         if (this.timeFinished()) {
           this._remainingPercentageSubscription.unsubscribe();
 
-          this.snackBar.open('Pomodoro finished!', 'OK');
+          this.snackBar.open(this._translateService.instant('SNACK_BARS.TIMER.FINISHED'), 'OK');
           this._soundService.beep();
 
           this._pomodoro.addEndDateForNow();
@@ -107,14 +110,14 @@ export class TimerComponent implements OnInit {
 
   public stopTimer() {
     this._timerService.stop();
-    this.snackBar.open('Pomodoro stopped', 'OK', {
+    this.snackBar.open(this._translateService.instant('SNACK_BARS.TIMER.STOPPED'), 'OK', {
       duration: this.SNACKBAR_DURATION,
     });
   }
 
   public resetTimer() {
     this._timerService.reset();
-    this.snackBar.open('Pomodoro cancelled', 'OK', {
+    this.snackBar.open(this._translateService.instant('SNACK_BARS.TIMER.CANCELLED'), 'OK', {
       duration: this.SNACKBAR_DURATION,
     });
   }
@@ -124,4 +127,3 @@ export class TimerComponent implements OnInit {
     this._minutesLength = minutesLength;
   }
 }
-

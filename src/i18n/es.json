@@ -21,5 +21,14 @@
   "LANGUAGES": {
     "SPANISH": "Español",
     "ENGLISH": "Inglés"
+  },
+  "SNACK_BARS": {
+    "TIMER": {
+      "RESUMED": "Pomodoro reanudado",
+      "STARTED": "Iniciado nuevo pomodoro",
+      "FINISHED": "¡Pomodoro finalizado!",
+      "STOPPED": "Pomodoro detenido",
+      "CANCELLED": "Pomodoro cancelado"
+    }
   }
 }
