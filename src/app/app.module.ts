@@ -16,6 +16,9 @@ import {FIREBASE_CONFIG, FIREBASE_AUTH_CONFIG} from "./database_config";
 import {TranslateModule} from "ng2-translate";
 import { LanguagePickerComponent } from './language-picker/language-picker.component';
 import { LoginComponent } from './login/login.component';
+import { AboutComponent } from './about/about.component';
+import { YoutubeVideoComponent } from './shared/components/youtube-video/youtube-video.component';
+import { SafePipe } from './shared/components/youtube-video/safe.pipe';
 
 
 @NgModule({
@@ -26,7 +29,10 @@ import { LoginComponent } from './login/login.component';
     PageNotFoundComponent,
     TimerComponent,
     LanguagePickerComponent,
-    LoginComponent
+    LoginComponent,
+    AboutComponent,
+    YoutubeVideoComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,

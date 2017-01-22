@@ -1,11 +1,13 @@
 import {Routes} from "@angular/router";
 import {TimersComponent} from "./timers/timers.component";
 import {HistoryComponent} from "./history/history.component";
+import {AboutComponent} from "./about/about.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 
 export const APP_ROUTES: Routes = [
   {path: 'timers', component: TimersComponent},
   {path: 'history', component: HistoryComponent},
+  {path: 'about', component: AboutComponent},
 
   // Defaults
   {
