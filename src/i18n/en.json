@@ -4,7 +4,8 @@
     "LOGIN_FACEBOOK": "Login with Facebook",
     "LOGIN_TWITTER": "Login with Twitter",
     "LOGIN_GITHUB": "Login with Github",
-    "LOGOUT": "Logout"
+    "LOGOUT": "Logout",
+    "LOGIN_WARNING": "You must be logged in to view this section."
   },
   "NAVBAR": {
     "TIMERS": "Timers",

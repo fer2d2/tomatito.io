@@ -14,7 +14,7 @@ export class PomodoroRepositoryService {
 
     console.info(`updating: /user-pomodoros/${user.id}/ inserting ${JSON.stringify(pomodoro)}`);
 
-    if(!this._authService.isAuth) {
+    if(!this._authService.authenticated) {
       console.error("Authentication service: user not loaded");
       return;
     }
@@ -28,6 +28,17 @@ export class PomodoroRepositoryService {
       }).catch((err) => {
       console.error(err);
     });
+  }
+
+  public getPomodoros() {
+    let user = this._authService.user;
+
+    if(!this._authService.authenticated) {
+      console.error("Authentication service: user not loaded");
+      return;
+    }
+
+    return this._angularFire.database.list(`/user-pomodoros/${user.id}`);
   }
 }
 

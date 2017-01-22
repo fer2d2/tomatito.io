@@ -1,3 +1,26 @@
-<p>
-  history works!
-</p>
+<md-card class="tomatito-card card-margin">
+  <md-card-content>
+
+    <div *ngIf="!authService.authenticated" class="private-section center">
+      <md-icon>lock</md-icon> {{ 'AUTH.LOGIN_WARNING' | translate }}
+    </div>
+
+    <div *ngIf="authService.authenticated">
+      <div *ngIf="_loading">
+        <md-spinner class="center"></md-spinner>
+      </div>
+
+      <div class="Rtable Rtable--3cols Rtable--collapse">
+        <div class="Rtable-row" *ngFor="let pomodoro of _pomodoros">
+          <div class="Rtable-cell center-cell">{{pomodoro.startDate}}</div>
+          <div class="Rtable-cell center-cell">{{pomodoro.endDate}}</div>
+          <div class="Rtable-cell Rtable-cell--foot center-cell"><strong>{{pomodoro.type}}</strong></div>
+        </div>
+      </div>
+    </div>
+
+  </md-card-content>
+  <md-card-actions class="center">
+    Previous | Next
+  </md-card-actions>
+</md-card>

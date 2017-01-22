@@ -1,5 +1,7 @@
 import {Injectable} from "@angular/core";
 import {AngularFire, AuthProviders} from "angularfire2";
+import {User} from "../entities/user";
+import {BehaviorSubject, Observable} from "rxjs";
 
 export const AUTH_METHODS = {
   TWITTER: AuthProviders.Twitter,
@@ -11,15 +13,17 @@ export const AUTH_METHODS = {
 
 @Injectable()
 export class AuthService {
-  isAuth:boolean;
-  user:any;
+  authenticated:boolean;
+  user:User;
+  private _authenticationStatus: BehaviorSubject<boolean>;
 
   constructor(public angularFire: AngularFire) {
-    this.isAuth = false;
-    this.user = {};
+    this.authenticated = false;
+    this.user = null;
+    this._authenticationStatus = new BehaviorSubject<boolean>(false);
 
     this.angularFire.auth.subscribe(
-      user => this._changeState(user),
+      user => this.changeState(user),
       error => console.trace(error)
     );
   }
@@ -34,28 +38,29 @@ export class AuthService {
     this.angularFire.auth.logout();
   }
 
-  private _changeState(user: any = null) {
-    if (user) {
-      this.isAuth = true;
-      this.user = this._getUserInfo(user)
+  private changeState(externalServiceUser: any = null) {
+    if (externalServiceUser) {
+      this.authenticated = true;
+      this.user = this.getUserInfo(externalServiceUser)
     }
     else {
-      this.isAuth = false;
-      this.user = {};
+      this.authenticated = false;
+      this.user = null;
     }
+
+    this._authenticationStatus.next(this.authenticated);
   }
 
-  private _getUserInfo(user: any): any {
-    if (!user) {
-      return {};
+  private getUserInfo(externalServiceUser: any): User {
+    if (!externalServiceUser) {
+      return null;
     }
-    let data = user.auth.providerData[0];
-    return {
-      id: data.uid,
-      name: data.displayName,
-      avatar: data.photoURL,
-      email: data.email,
-      provider: data.providerId
-    };
+    let userInfo = externalServiceUser.auth.providerData[0];
+
+    return new User(userInfo.uid, userInfo.displayName, userInfo.avatar, userInfo.email, userInfo.providerId);
+  }
+
+  get authentication(): Observable<boolean> {
+    return this._authenticationStatus.asObservable();
   }
 }

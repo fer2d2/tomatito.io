@@ -4,7 +4,8 @@
     "LOGIN_FACEBOOK": "Iniciar sesión con Facebook",
     "LOGIN_TWITTER": "Iniciar sesión con Twitter",
     "LOGIN_GITHUB": "Iniciar sesión con Github",
-    "LOGOUT": "Cerrar sesión"
+    "LOGOUT": "Cerrar sesión",
+    "LOGIN_WARNING": "Debes iniciar sesión para ver esta sección."
   },
   "NAVBAR": {
     "TIMERS": "Cronómetros",

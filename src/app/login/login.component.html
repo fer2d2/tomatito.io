@@ -3,20 +3,20 @@
   <md-icon>more_vert</md-icon>
 </button>
 <md-menu #login_menu="mdMenu">
-  <button (click)="login(AUTH_METHODS.GOOGLE)" md-menu-item *ngIf="!authService.isAuth">
+  <button (click)="login(AUTH_METHODS.GOOGLE)" md-menu-item *ngIf="!authService.authenticated">
     <md-icon>person</md-icon>
     <span>{{ 'AUTH.LOGIN_GOOGLE' | translate }}</span>
   </button>
-  <button (click)="login(AUTH_METHODS.TWITTER)" md-menu-item *ngIf="!authService.isAuth">
+  <button (click)="login(AUTH_METHODS.TWITTER)" md-menu-item *ngIf="!authService.authenticated">
     <md-icon>person</md-icon>
     <span>{{ 'AUTH.LOGIN_TWITTER' | translate }}</span>
   </button>
-  <button (click)="login(AUTH_METHODS.GITHUB)" md-menu-item *ngIf="!authService.isAuth">
+  <button (click)="login(AUTH_METHODS.GITHUB)" md-menu-item *ngIf="!authService.authenticated">
     <md-icon>person</md-icon>
     <span>{{ 'AUTH.LOGIN_GITHUB' | translate }}</span>
   </button>
 
-  <button (click)="logout()" md-menu-item *ngIf="authService.isAuth">
+  <button (click)="logout()" md-menu-item *ngIf="authService.authenticated">
     <md-icon>clear</md-icon>
     <span>{{ 'AUTH.LOGOUT' | translate }}</span>
   </button>
