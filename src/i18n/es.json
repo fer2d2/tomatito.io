@@ -1,6 +1,9 @@
 {
   "AUTH": {
     "LOGIN_GOOGLE": "Iniciar sesión con Google",
+    "LOGIN_FACEBOOK": "Iniciar sesión con Facebook",
+    "LOGIN_TWITTER": "Iniciar sesión con Twitter",
+    "LOGIN_GITHUB": "Iniciar sesión con Github",
     "LOGOUT": "Cerrar sesión"
   },
   "NAVBAR": {

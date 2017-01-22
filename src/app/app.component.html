@@ -6,20 +6,7 @@
 
     <tomatito-language-picker></tomatito-language-picker>
 
-    <span class="user-data">{{ authService.user?.email }}</span>
-    <button md-icon-button [mdMenuTriggerFor]="login_menu">
-      <md-icon>more_vert</md-icon>
-    </button>
-    <md-menu #login_menu="mdMenu">
-      <button (click)="login()" md-menu-item>
-        <md-icon>person</md-icon>
-        <span>{{ 'AUTH.LOGIN_GOOGLE' | translate }}</span>
-      </button>
-      <button (click)="logout()" md-menu-item>
-        <md-icon>clear</md-icon>
-        <span>{{ 'AUTH.LOGOUT' | translate }}</span>
-      </button>
-    </md-menu>
+    <tomatito-login></tomatito-login>
 
     <md-toolbar-row>
       <span class="space-filler"></span>

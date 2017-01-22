@@ -1,0 +1,23 @@
+<span class="user-data">{{ authService.user?.email }}</span>
+<button md-icon-button [mdMenuTriggerFor]="login_menu">
+  <md-icon>more_vert</md-icon>
+</button>
+<md-menu #login_menu="mdMenu">
+  <button (click)="login(AUTH_METHODS.GOOGLE)" md-menu-item *ngIf="!authService.isAuth">
+    <md-icon>person</md-icon>
+    <span>{{ 'AUTH.LOGIN_GOOGLE' | translate }}</span>
+  </button>
+  <button (click)="login(AUTH_METHODS.TWITTER)" md-menu-item *ngIf="!authService.isAuth">
+    <md-icon>person</md-icon>
+    <span>{{ 'AUTH.LOGIN_TWITTER' | translate }}</span>
+  </button>
+  <button (click)="login(AUTH_METHODS.GITHUB)" md-menu-item *ngIf="!authService.isAuth">
+    <md-icon>person</md-icon>
+    <span>{{ 'AUTH.LOGIN_GITHUB' | translate }}</span>
+  </button>
+
+  <button (click)="logout()" md-menu-item *ngIf="authService.isAuth">
+    <md-icon>clear</md-icon>
+    <span>{{ 'AUTH.LOGOUT' | translate }}</span>
+  </button>
+</md-menu>

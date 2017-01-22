@@ -15,6 +15,7 @@ import {AngularFireModule} from "angularfire2";
 import {FIREBASE_CONFIG, FIREBASE_AUTH_CONFIG} from "./database_config";
 import {TranslateModule} from "ng2-translate";
 import { LanguagePickerComponent } from './language-picker/language-picker.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { LanguagePickerComponent } from './language-picker/language-picker.compo
     HistoryComponent,
     PageNotFoundComponent,
     TimerComponent,
-    LanguagePickerComponent
+    LanguagePickerComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
