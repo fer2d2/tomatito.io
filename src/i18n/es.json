@@ -34,5 +34,10 @@
       "STOPPED": "Pomodoro detenido",
       "CANCELLED": "Pomodoro cancelado"
     }
+  },
+  "HISTORY": {
+    "START_DATE": "Inicio",
+    "END_DATE": "Fin",
+    "TIMER_TYPE": "Tipo de contador"
   }
 }

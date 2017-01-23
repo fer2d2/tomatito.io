@@ -22,6 +22,14 @@ $breakpoint: 500px;
   width: 100%;
 }
 
+.row-divider {
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.row-head {
+  background-color: #D1C4E9;
+}
+
 .Rtable--2cols .Rtable-cell { width: 50%; }
 .Rtable--3cols .Rtable-cell { width: 33.33%; }
 .Rtable--4cols .Rtable-cell { width: 25%; }

@@ -34,5 +34,10 @@
       "STOPPED": "Pomodoro stopped",
       "CANCELLED": "Pomodoro cancelled"
     }
+  },
+  "HISTORY": {
+    "START_DATE": "Start date",
+    "END_DATE": "End date",
+    "TIMER_TYPE": "Timer type"
   }
 }

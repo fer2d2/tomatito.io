@@ -10,11 +10,19 @@
         <md-spinner class="center"></md-spinner>
       </div>
 
-      <div class="Rtable Rtable--3cols Rtable--collapse">
-        <div class="Rtable-row" *ngFor="let pomodoro of _pomodoros">
-          <div class="Rtable-cell center-cell">{{pomodoro.startDate}}</div>
-          <div class="Rtable-cell center-cell">{{pomodoro.endDate}}</div>
-          <div class="Rtable-cell Rtable-cell--foot center-cell"><strong>{{pomodoro.type}}</strong></div>
+      <div *ngIf="!_loading">
+        <div class="Rtable Rtable--3cols Rtable--collapse">
+          <div class="Rtable-row row-head">
+            <div class="Rtable-cell center-cell">{{ 'HISTORY.START_DATE' | translate }}</div>
+            <div class="Rtable-cell center-cell">{{ 'HISTORY.END_DATE' | translate }}</div>
+            <div class="Rtable-cell center-cell">{{ 'HISTORY.TIMER_TYPE' | translate }}</div>
+          </div>
+
+          <div class="Rtable-row row-divider" *ngFor="let pomodoro of _pomodoros">
+            <div class="Rtable-cell center-cell">{{ pomodoro.startDate | date:'shortTime' }}</div>
+            <div class="Rtable-cell center-cell">{{ pomodoro.endDate | date:'shortTime' }}</div>
+            <div class="Rtable-cell Rtable-cell--foot center-cell"><strong>{{ 'TIMER_TYPES.'+pomodoro.type | translate }}</strong></div>
+          </div>
         </div>
       </div>
     </div>
