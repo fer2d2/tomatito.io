@@ -1,19 +1,19 @@
 <md-tab-group [dynamicHeight]="true">
   <md-tab label="{{ 'TIMER_TYPES.POMODORO' | translate }}">
     <div class="tab-content">
-      <tomatito-timer [minutesLength]="_clockTypes.pomodoro"></tomatito-timer>
+      <tomatito-timer [minutesLength]="_clockTypes.POMODORO"></tomatito-timer>
     </div>
   </md-tab>
 
   <md-tab label="{{ 'TIMER_TYPES.MINI_BREAK' | translate }}">
     <div class="tab-content">
-      <tomatito-timer [minutesLength]="_clockTypes.miniBreak"></tomatito-timer>
+      <tomatito-timer [minutesLength]="_clockTypes.MINI_BREAK"></tomatito-timer>
     </div>
   </md-tab>
 
   <md-tab label="{{ 'TIMER_TYPES.LONG_BREAK' | translate }}">
     <div class="tab-content">
-      <tomatito-timer [minutesLength]="_clockTypes.longBreak"></tomatito-timer>
+      <tomatito-timer [minutesLength]="_clockTypes.LONG_BREAK"></tomatito-timer>
     </div>
   </md-tab>
 </md-tab-group>

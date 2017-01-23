@@ -1,6 +1,6 @@
 export class Pomodoro {
-  public startDate:string;
-  public endDate:string;
+  public startDate:number;
+  public endDate:number;
   public type:string;
 
   constructor(type: string) {
@@ -15,7 +15,7 @@ export class Pomodoro {
     this.endDate = this.getDateNowStr();
   }
 
-  private getDateNowStr():string {
-    return new Date().toISOString();
+  private getDateNowStr():number {
+    return new Date().getTime();
   }
 }

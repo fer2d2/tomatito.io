@@ -1,5 +1,5 @@
 export enum CLOCK_TYPES {
-  pomodoro = 25,
-  miniBreak = 5,
-  longBreak = 10
+  POMODORO = 25,
+  MINI_BREAK = 5,
+  LONG_BREAK = 10
 }
