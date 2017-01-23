@@ -27,7 +27,7 @@ export class HistoryComponent implements OnInit {
               this._loading = false;
             }
 
-            this._pomodoros = pomodoros;
+            this._pomodoros = pomodoros.reverse();
             authSubscription.unsubscribe();
           });
       }
